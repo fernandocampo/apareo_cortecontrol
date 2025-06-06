@@ -1,0 +1,8 @@
+# Ignorar todo por defecto
+*
+
+# Pero permitir archivos con extensión .cpp
+!*.cpp
+
+# Permitir el archivo .gitignore mismo (opcional)
+!.gitignore
