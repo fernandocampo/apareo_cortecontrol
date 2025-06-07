@@ -1,12 +1,7 @@
 /*
-Ejercicio 1: Apareo de Vectores
-Enunciado: Dados dos vectores de números enteros ya ordenados de menor a mayor, implementar una función que los combine en un tercer vector manteniendo el orden.
-Datos de prueba:
-Vector A: {1, 4, 8, 12}
-Vector B: {2, 5, 6, 10, 15}
-Resultado esperado: {1, 2, 4, 5, 6, 8, 10, 12, 15}
 Ejercicio 2: Corte de Control Simple
-Enunciado: Una librería tiene registros de ventas ordenados por vendedor. Crear un programa que muestre cuántos libros vendió cada vendedor en total.
+Enunciado: Una librería tiene registros de ventas ordenados por vendedor. 
+Crear un programa que muestre cuántos libros vendió cada vendedor en total.
 
 Estructura de datos:
 struct Venta {
