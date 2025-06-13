@@ -17,7 +17,6 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
 struct ALUMNO 
@@ -26,17 +25,53 @@ struct ALUMNO
     long legajo;
 };
 
-void quienesPrograman(ALUMNO vectorProgramacion[], int nProg, ALUMNO vectorLaboratorio[], int nLab, ALUMNO vectorQuienesPrograman[], int nTotal)
+void quienesPrograman(ALUMNO vectorProgramacion[], int nProg, ALUMNO vectorLaboratorio[], int nLab, ALUMNO vectorQuienesPrograman[], int& nTotal)
 {
-    int n = 0;
-    for(int i = 0; i < nProg; i++)
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    while(i < nProg && j < nLab)
     {
-        for(int j = 0; j < nLab; j++)
+        if(vectorProgramacion[i].legajo < vectorLaboratorio[j].legajo)
         {
-            //vectorQuienesPrograman[n++] = algo;
+            vectorQuienesPrograman[k++] = vectorProgramacion[i++];
+        }
+        else if(vectorLaboratorio[j].legajo < vectorProgramacion[i].legajo)
+        {
+            vectorQuienesPrograman[k++] = vectorLaboratorio[j++];
+        }
+        else
+        {
+            vectorQuienesPrograman[k++] = vectorProgramacion[i];
+            i++;
+            j++;
         }
     }
+
+    while(i < nProg)
+    {
+        vectorQuienesPrograman[k++] = vectorProgramacion[i++];
+    }
+
+    while(j < nLab)
+    {
+        vectorQuienesPrograman[k++] = vectorLaboratorio[j++];
+    }
+
+    nTotal = k;
 }
+
+
+void imprimirAlumnos(ALUMNO alumnos[], int cantidad)
+{
+    for (int i = 0; i < cantidad; i++)
+    {
+        cout << alumnos[i].legajo << " " << alumnos[i].nombre << endl;
+    }
+}
+
+
 
 int main()
 {
@@ -46,31 +81,30 @@ int main()
     ALUMNO total[TAMANIO_MAXIMO];
 
     int i = 0;
-    prog[i].legajo = 489789;
-    prog[i].nombre = "Juan Gomez";
-    i++;
-    prog[i].legajo = 3423124;
+    prog[i].legajo = 100124;
     prog[i].nombre = "Juan Perez";
     i++;
-    prog[i].legajo = 4598789;
+    prog[i].legajo = 101789;
+    prog[i].nombre = "Juan Gomez";
+    i++;
+    prog[i].legajo = 1028789;
     prog[i].nombre = "Juan Gonzalez";
 
     i = 0;
-    lab[i].legajo = 3423124;
+    lab[i].legajo = 100124;
     lab[i].nombre = "Juan Perez";
     i++;
-    lab[i].legajo = 4598789;
-    lab[i].nombre = "Juan Gonzalez";
-    i++;
-    lab[i].legajo = 4687989;
+    lab[i].legajo = 101989;
     lab[i].nombre = "Tito Fernandez";
+    i++;
+    lab[i].legajo = 1028789;
+    lab[i].nombre = "Juan Gonzalez";
 
-    quienesPrograman(prog, 3, lab, 3, total, 3);
+    int ntotal;
 
-    for(int i = 0; i < 6; i++)
-    {
-        cout << total[i].legajo << total[i].nombre << endl;
-    }
+    quienesPrograman(prog, 3, lab, 3, total, ntotal);
+    imprimirAlumnos(total, ntotal);
+
 
     return 0;
 }
